@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1731969559 source:d:\iti\1) osad45\1) c\day3 lab3\main.c
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+	<windows.h>
+	<dos.h>
+	<dir.h>
+	<dos.h>
+	<dir.h>
+
+1731969559 source:d:\iti\1) osad45\1) c\day3 lab3\menu\main.c
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+	<windows.h>
+	<dos.h>
+	<dir.h>
+	<dos.h>
+	<dir.h>
+
