@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1731850102 source:d:\iti\1) osad45\1) c\day2 lab2\main.c
+	<stdio.h>
+
+1731850102 source:d:\iti\1) osad45\1) c\day2 lab2\day2 lab2.1\main.c
+	<stdio.h>
+
+1731970029 source:d:\iti\1) osad45\1) c\day2 lab2.1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<windows.h>
+
+1732021245 source:d:\iti\1) osad45\day2 lab2.1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<windows.h>
+
