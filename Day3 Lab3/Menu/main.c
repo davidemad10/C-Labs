@@ -11,6 +11,8 @@
 #define RIGHT 77
 #define LEFT 75
 #define ENTER 13
+#define BACK 8
+#define ESC 27
 
 void SetColor(int ForgC){
      WORD wColor;
@@ -51,12 +53,12 @@ void displayMenu(int selected) {
 
 int main() {
     int selected = 1;
-    int exit=0;
+    int exitLoop=0;
     int ch;
 
     displayMenu(selected);
 
-    while (exit==0) {
+     while (exitLoop==0) {
         ch = _getch();
 
         if (ch == 0 || ch == 224) {
@@ -67,14 +69,29 @@ int main() {
                 selected = (selected == 3) ? 1 : selected + 1;
             }
         } else if (ch == ENTER) {
-            exit=1;
+            if (selected == 3) {
+                clearScreen();
+                SetColor(20);
+                printf("Exiting program...\n");
+                SetColor(7);
+                exit(0);
+            } else {
+                clearScreen();
+                printf("You selected option %d\n", selected);
+                printf("Press Backspace to return to the menu...\n");
+                int flag =1;
+                while (flag) {
+                    ch = _getch();
+                    if (ch == BACK) {
+                        displayMenu(selected);
+                        flag=0;
+                    }
+                }
+            }
         }
 
-        displayMenu(selected);
+        displayMenu(selected); // Refresh the menu
     }
-
-    clearScreen();
-    printf("You selected option %d\n", selected);
 
     return 0;
 }
