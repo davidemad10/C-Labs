@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1732314479 source:d:\iti\1) osad45\1) c\day4 lab4\myfunctions.c
+	<stdio.h>
+
+1732314053 source:d:\iti\1) osad45\1) c\day4 lab4\main.c
+	<stdio.h>
+	<stdlib.h>
+	"myFunctions.h"
+
+1732313899 d:\iti\1) osad45\1) c\day4 lab4\myfunctions.h
+
