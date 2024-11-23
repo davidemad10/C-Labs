@@ -14,6 +14,8 @@
 #define ENTER 13
 #define BACK 8
 #define ESC 27
+#define HOME 71
+#define END 79
 
 void SetColor(int ForgC){
      WORD wColor;
@@ -68,15 +70,19 @@ int employeeCount=0;
 void employeeData(){
     struct employee emp;
     int employeeAdded=0;
+    int exitCond=0;
     int i=0;
 
-    printf("Please Enter How Many Employee You Want To Add. \n");
-    while (scanf("%d", &employeeAdded) != 1) {
+
+    printf("Please Enter How Many Employees You Want To Add. \n");
+
+    while (scanf("%d", &employeeAdded) != 1 || employeeAdded <=0) {
         SetColor(4);
         printf("Error: Please enter an integer only!\n");
         SetColor(7);
         while (getchar() != '\n');
     }
+
 
 
     while(i<employeeAdded){
@@ -86,12 +92,17 @@ void employeeData(){
     int idExists = 1;
     while (idExists) {
         printf("Enter Employee Id===> ");
-        while (scanf("%d", &emp.id) != 1) {
-            SetColor(4);
-            printf("Error: Please enter an integer only!\n");
-            SetColor(7);
-            while (getchar() != '\n');
+       while (exitCond==0) {
+        if (scanf("%d", &emp.id) == 1 && emp.id > 0 ) {
+            exitCond=1;
+        }else{
+        SetColor(4);
+        printf("Error: Please enter a positive integer only!\n");
+        SetColor(7);
+        while (getchar() != '\n');
         }
+}
+exitCond=0;
 
         idExists = 0;
         for (int j = 0; j < employeeCount; j++) {
@@ -106,7 +117,7 @@ void employeeData(){
     }
 
     printf("Enter Employee Name===> ");
-      while (scanf("%s", &emp.name) != 1) {
+      while (scanf("%s", emp.name) != 1) {
         SetColor(4);
         printf("Error: Please enter a valid string!\n");
         SetColor(7);
@@ -114,37 +125,53 @@ void employeeData(){
     }
 
     printf("Enter Employee Salary===> ");
-    while (scanf("%d", &emp.salary) != 1) {
-        SetColor(4);
-        printf("Error: Please enter an integer only!\n");
+    while (exitCond==0) {
+        if (scanf("%d", &emp.salary) == 1 && emp.salary > 0 ) {
+            exitCond=1;
+        }else{
+            SetColor(4);
+        printf("Error: Please enter a positive integer only!\n");
         SetColor(7);
+        }
         while (getchar() != '\n');
-    }
+}
 
-
+exitCond=0;
     printf("Enter Employee Birthday (Day)===> ");
-    while (scanf("%d", &emp.BD) != 1) {
-        SetColor(4);
-        printf("Error: Please enter an integer only!\n");
+    while (exitCond==0) {
+        if (scanf("%d", &emp.BD) == 1 && emp.BD > 0 && emp.BD <= 31 ) {
+            exitCond=1;
+        }else{
+            SetColor(4);
+        printf("Error: Please enter a positive integer only between 1 and 31!\n");
         SetColor(7);
+        }
         while (getchar() != '\n');
-    }
-
+}
+exitCond=0;
     printf("Enter Employee Birthday (Month)===> ");
-    while (scanf("%d", &emp.BM) != 1) {
-        SetColor(4);
-        printf("Error: Please enter an integer only!\n");
+    while (exitCond==0) {
+        if (scanf("%d", &emp.BM) == 1 && emp.BM > 0 && emp.BM <=12 ) {
+            exitCond=1;
+        }else{
+            SetColor(4);
+        printf("Error: Please enter a positive integer only between 1 and 12!\n");
         SetColor(7);
+        }
         while (getchar() != '\n');
-    }
-
+}
+exitCond=0;
     printf("Enter Employee Birthday (Year)===> ");
-    while (scanf("%d", &emp.BY) != 1) {
-        SetColor(4);
-        printf("Error: Please enter an integer only!\n");
+    while (exitCond==0) {
+        if (scanf("%d", &emp.BY) == 1 && emp.BY > 0 && emp.BY <= 2024 ) {
+            exitCond=1;
+        }else{
+            SetColor(4);
+        printf("Error: Please enter a positive integer only and not above 2024!\n");
         SetColor(7);
+        }
         while (getchar() != '\n');
-    }
+}
     employees[employeeCount++]=emp;
     i++;
 }
@@ -209,8 +236,8 @@ void modifyEmployeeData() {
                     SetColor(4);
                     printf("Invalid input! Please enter a number between 1 and 6.\n");
                     SetColor(7);
-                    while (getchar() != '\n'); // Clear invalid input
-                    choice = 0; // Reset choice
+                    while (getchar() != '\n');
+                    choice = 0;
                     continue;
                 }
 
@@ -278,11 +305,15 @@ int main() {
 
         if (ch == 0 || ch == 224) {
             ch = _getch();
-            if (ch == UP) {
-                selected = (selected == 1) ? 4 : selected - 1;
-            } else if (ch == DOWN) {
-                selected = (selected == 4) ? 1 : selected + 1;
-            }
+        if (ch == UP) {
+            selected = (selected == 1) ? 4 : selected - 1;
+        } else if (ch == DOWN) {
+            selected = (selected == 4) ? 1 : selected + 1;
+        } else if (ch == HOME) {
+            selected = 1;
+        } else if (ch == END) {
+            selected = 4;
+        }
         } else if (ch == ENTER) {
             if (selected == 4) {
                 clearScreen();
